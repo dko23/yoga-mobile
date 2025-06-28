@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Image, StyleSheet, Text } from 'react-native';
-import UserContext from './context/UserContext';
+import {UserContext}from './context/UserContext';
 import UserProfilePicture from './UserProfilePicture';
 
 function UserProfile() {

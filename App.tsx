@@ -24,22 +24,41 @@ const Tab = createBottomTabNavigator();
 
 
 export default function App() {
-const { state, dispatch } = useContext(UserContext);// state
 
- useEffect(() => {
+const [isLoading, setIsLoading ]= useState(true);
+const [isSignout, setSignOut ]= useState(true)
+const [userToken, setUserToken ]= useState(null);
+
+
+  React.useEffect(() => {
+    // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-        let userToken = await SecureStore.getItemAsync('usertoken');
-        dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+      let retrieveUserToken;
+
+      try {
+        // Restore token stored in `SecureStore` or any other encrypted storage
+         retrieveUserToken = await SecureStore.getItemAsync('usertoken');// the 'usertoken' is the key string that identifies the value or token
+      } catch (e) {
+        // Restoring token failed
+      }
+
+      // After restoring token, we may need to validate it in production apps
+
+      // This will switch to the App screen or Auth screen and this loading
+      // screen will be unmounted and thrown away.
+      setIsLoading(false);
+      setUserToken(retrieveUserToken);
     };
+
     bootstrapAsync();
-}, []);
+  }, []);
 
   return (
     <PaperProvider>
       <UserProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            {state.userToken == null ? (<>
+            {userToken == null ? (<>
               <Stack.Screen name='LoginPage' component={LoginPage} />
               <Stack.Screen name='SignUp' component={SignUp} />
               <Stack.Screen name='ResetPassword'component={resetPassword} />

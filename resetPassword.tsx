@@ -7,7 +7,7 @@ import axios from 'axios'
 function resetPassword({ route, navigation }) {
 
 const [message,setMessage]=useState('')
-const { password, setPassword } = useContext(UserContext);
+const {password, setPassword } = useContext(UserContext);
 
 // Extract token from route parameters (React Navigation)
   const { token } = route.params; 
@@ -64,7 +64,7 @@ style={styles.inputbar}
 mode='outlined'
 secureTextEntry={true}  // This hides the password input
                 />
-{renderPasswordError()}
+<Text>{renderPasswordError()}</Text>
                   {message ? <Text>{message}</Text> : null}
                   
                 <Button

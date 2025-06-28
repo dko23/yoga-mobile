@@ -1,5 +1,6 @@
+import React from 'react';
 import {StyleSheet, View, FlatList, TextInput , Image, TouchableOpacity} from 'react-native';
-import React, { useState, useContext } from 'react';
+import { useState, useContext } from 'react';
 import DetailScreen from './DetailScreen';
 import {UserContext }from './context/UserContext';
 import { Searchbar } from 'react-native-paper';
@@ -7,6 +8,8 @@ import { Card } from 'react-native-paper';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Modal, Portal, Text, Button, PaperProvider } from 'react-native-paper';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
 
 
 function HomeScreen({ navigation }) {
@@ -63,6 +66,14 @@ return (
     )}
     contentContainerStyle={{ paddingBottom: 20 }} // Add padding if necessary
   />
+
+
+
+
+
+
+
+  
 
   {/* Modal and Portal components should be placed outside the FlatList */}
   <Portal>
